@@ -1,0 +1,13 @@
+*~
+.*.sw*
+ 
+node_modules/
+npm-debug.log
+ 
+bower_components/
+
+doc.txt
+plan.json
+done.json
+
+config/

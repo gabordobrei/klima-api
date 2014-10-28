@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+ 
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+
+        <div class="row">
+          <div class="col-md-12">
+            <form id="form" role="form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-warning">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">A baleset súlyossága</h3>
+                    </div>
+                    <div class="panel-body">
+                      <p>Azt adhatjuk meg, hogy milyen súlyos baleseteket szeretnénk figyelembe venni</p>
+                      
+                      <div id="outcome" class="checkbox">
+                        <label>
+                          <input type="checkbox" name="outcome" value=1 checked> Könnyű
+                        </label>
+                      </div>
+                      <div id="outcome" class="checkbox">
+                        <label>
+                          <input type="checkbox" name="outcome" value=3> Súlyos
+                        </label>
+                      </div>
+                      <div id="outcome" class="checkbox">
+                        <label>
+                          <input type="checkbox" name="outcome" value=2> Halálos
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Az időjárási adatok részletessége</h3>
+                    </div>
+                    <div class="panel-body">
+                      <p>Mennyire részletes adatot szeretnénk lekérdezni</p>
+                      
+                      <div class="radio">
+                        <label data-toggle="tooltip" data-placement="auto" title="Csak a hőmérséklet és a csapadék">
+                          <input type="radio" name="details" value=1 checked> Átfogó kép
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label data-toggle="tooltip" data-placement="auto" title="Hőmérséklet, csapadék, szélsebesség és a szinoptikus szélirány">
+                          <input type="radio" name="details" value=2> Részletes
+                        </label>
+                      </div>
+                      <div class="radio" data-toggle="tooltip" data-placement="auto" title="Minden mért adat">
+                        <label>
+                          <input type="radio" name="details" value=3> Minden
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end .row -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="datepicker" id="startDate" name="startDate" value="1990-01-01" />
+                  <span>-</span>
+                  <input type="text" class="datepicker" id="endDate"   name="endDate"   value="2010-12-31" />
+
+                  <button id="submit-button" class="btn btn-info pull-right" type="submit">Mutasd!</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div id="api-example">asdf</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Klíma API - minta</h3>
+          </div>
+          <div class="panel-body">
+            <p>Ezen az oldalon egy minta látható, amely a Klíma API működését mutatja be.</p>
+            <p></p>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+{% endblock %}

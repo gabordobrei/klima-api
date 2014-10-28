@@ -1,0 +1,64 @@
+@font-face {
+  font-family: batman;
+  src: url(/fonts/Gotham-Bold.woff);
+}
+ 
+body {
+  font-family: "Raleway", sans-serif;
+}
+ 
+#content {
+  margin-top: 80px;
+}
+ 
+#preloader {
+  position: fixed;
+  padding-top: 20%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+ 
+#brand {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-family: batman;
+}
+
+#brand:before{
+  text-transform: uppercase;
+  color: #EEA236; /* F0AD4E EEA236 */
+  content: 'klíma';
+}
+#brand:after{
+  color: #46B8DA; /* 5BC0DE 46B8DA */
+  font-size: 135%;
+  content: 'projekt';
+}
+ 
+#error {
+  text-align: center;
+}
+ 
+#error-msg {
+  color: red;
+  margin-top: 100px;
+  font-weight: bold;
+}
+
+.sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #E7E7E7;
+}
+
+#api-example {
+  font-size: 150%;
+}

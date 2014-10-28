@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Klíma Projekt</title>
+ 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+    <!-- Bootstrap -->
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='/stylesheets/style.css' rel='stylesheet' type='text/css'>
+    <link href='/images/favicon.ico' rel='shortcut icon' type='image/ico'/>
+ 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class = "navbar navbar-default navbar-fixed-top">
+      <div class = "container">
+        <a href = "/" class = "navbar-brand"><div id="brand"></div></a>
+        
+        <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+        </button>
+        
+        <div class = "collapse navbar-collapse navHeaderCollapse">
+          <ul class = "nav navbar-nav navbar-right">
+            <li><a href = "/database-interface">Adatbázis Interface</a></li>
+            <li><a href = "/diagram">Diagramok</a></li>
+            <li><a href = "/download/csv">CSV export</a></li>
+            <li><a href = "/download/raw-data" >Nyers adatok letöltése</a></li>
+            <li><a href = "/api" >API</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div class="sticky-footer">
+      <div class="container">
+        <p class="navbar-text pull-left">© Copyright 2014 - BME-TMIT</p>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script>
+      function setAPIExampleText() {
+        //console.log($("#form").serialize());
+        var APIExampleText = $("#api-example");
+        var url = APIExampleText.html();
+
+        APIExampleText.html(url + 1);
+      }
+
+      $(function() {
+        setAPIExampleText();
+
+        $("#form").change(setAPIExampleText);
+
+        $( ".datepicker" ).datepicker({
+          closeText: 'bezárás',
+          prevText: '&laquo;&nbsp;vissza',
+          nextText: 'előre&nbsp;&raquo;',
+          currentText: 'ma',
+          monthNames: ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'],
+          monthNamesShort: ['Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'],
+          dayNames: ['Vasámap', 'Hétfö', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat'],
+          dayNamesShort: ['Vas', 'Hét', 'Ked', 'Sze', 'Csü', 'Pén', 'Szo'],
+          dayNamesMin: ['V', 'H', 'K', 'Sze', 'Cs', 'P', 'Szo'],
+          dateFormat: 'yy-mm-dd',
+          firstDay: 0,
+          isRTL: false,
+
+          numberOfMonths: 3,
+          showCurrentAtPos: 1,
+          showWeek: true,
+          showButtonPanel: true,
+
+          defaultDate: new Date(1990, 1-1, 1),
+          minDate: new Date(1990, 1-1, 1),
+          maxDate: new Date(2010, 12-1, 31)
+        });
+
+        $("#startDate").change(function(){
+          $("#endDate").datepicker( "option", "minDate", $(this).datepicker( "getDate" ) );
+        });
+
+        $("#endDate").change(function(){
+          $("#startDate").datepicker( "option", "maxDate", $(this).datepicker( "getDate" ) );
+        });
+
+        $("#form").submit(function(e){
+          return;
+          //console.log($("input").serialize());
+
+          //*
+          $.ajax({
+            url: "/api",
+            type: "POST",
+            data: $(this).serialize(),
+           
+            success: function (data) {
+              console.log(data);
+              //$printerJobTable.html(data); initializeRowClick();
+            }
+          });
+          //*/
+
+          e.preventDefault();
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+ 
+{% block content %}
+    <section id="error">
+      <div class="error-title">
+        <h1>Oh shoot!</h1>
+        <h3>Something terrible happened...</h3>
+      </div>
+ 
+      <div id="error-msg">{{ message }}</div>
+    </section>
+{% endblock %}
