@@ -1,0 +1,66 @@
+FORMAT: 1A
+
+# Klíma
+A Klíma API-val *meteorológiai és baleseti* adatokat lehet elérni a BME TMIT adatbázisából. Ugyan a dokumentáció magyarul van, az API hívásoknál angolt használuk.
+
+# Group Balesetek
+A baleseti adatok elérése **Klíma API**-n belül.
+
+## Az összes baleset [/accidents]
+### Az összes baleset lekérdezése [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1,
+          "happenedAt": "1990-01-01T02:00:00.000Z",
+          "outcome": "minor",
+          "roadShape": "straight",
+          "latitude": 47.527417515462,
+          "longitude": 19.964537563212,
+          "isBuiltupAreas": true,
+          "isDirectionFrontal": false,
+          "isDirectionSameDirection": false,
+          "isDirectionStraightAndStraight": true,
+          "isDirectionStraightAndCrossing": false,
+          "isPassangerInjured": false,
+          "isPedestrianInjured": false,
+          "withTrain": false,
+          "withWildAnimal": false,
+          "withPet": false,
+          "isOtherCause": false
+        },{
+          "id": 2,
+          "happenedAt": "1990-01-01T04:00:00.000Z",
+          "outcome": "major",
+          "roadShape": "straight",
+          "latitude": 47.527417515462,
+          "longitude": 19.964537563212,
+          "isBuiltupAreas": true,
+          "isDirectionFrontal": false,
+          "isDirectionSameDirection": false,
+          "isDirectionStraightAndStraight": true,
+          "isDirectionStraightAndCrossing": false,
+          "isPassangerInjured": false,
+          "isPedestrianInjured": false,
+          "withTrain": false,
+          "withWildAnimal": false,
+          "withPet": false,
+          "isOtherCause": false
+        }
+        ...]
+
+## Egy baleset [/accidents/:id?field=:field]
+### Egy baleset [GET]
++ Response 200 (application/json)
+
+        {
+          "id": :id,
+          "happenedAt": "1990-01-01T02:00:00.000Z",
+          "outcome": "minor",
+          "isPassangerInjured": false
+        }
+
++ Parameters
+    + id (required, number, `1`) ... Az `id` a balesetek egész értékű egyedi azonosítója.
+    + field (optional, string, `happenedAt,outcome,isPassangerInjured`) ...
+    Megadható, hogy melyik attribútumokat szeretnénk lekérni. Az `id` mindig benne van a válaszban.
