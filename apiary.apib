@@ -10,46 +10,48 @@ A baleseti adatok elérése **Klíma API**-n belül.
 ### Az összes baleset lekérdezése [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1,
-          "happenedAt": "1990-01-01T02:00:00.000Z",
-          "outcome": "minor",
-          "roadShape": "straight",
-          "latitude": 47.527417515462,
-          "longitude": 19.964537563212,
-          "isBuiltupAreas": true,
-          "isDirectionFrontal": false,
-          "isDirectionSameDirection": false,
-          "isDirectionStraightAndStraight": true,
-          "isDirectionStraightAndCrossing": false,
-          "isPassangerInjured": false,
-          "isPedestrianInjured": false,
-          "withTrain": false,
-          "withWildAnimal": false,
-          "withPet": false,
-          "isOtherCause": false
-        },{
-          "id": 2,
-          "happenedAt": "1990-01-01T04:00:00.000Z",
-          "outcome": "major",
-          "roadShape": "straight",
-          "latitude": 47.527417515462,
-          "longitude": 19.964537563212,
-          "isBuiltupAreas": true,
-          "isDirectionFrontal": false,
-          "isDirectionSameDirection": false,
-          "isDirectionStraightAndStraight": true,
-          "isDirectionStraightAndCrossing": false,
-          "isPassangerInjured": false,
-          "isPedestrianInjured": false,
-          "withTrain": false,
-          "withWildAnimal": false,
-          "withPet": false,
-          "isOtherCause": false
+        {
+          "page": 1,
+          "accidents": [{
+            "id": 1,
+            "happenedAt": "1990-01-01T02:00:00.000Z",
+            "outcome": "minor",
+            "roadShape": "straight",
+            "latitude": 47.527417515462,
+            "longitude": 19.964537563212,
+            "isBuiltupAreas": true,
+            "isDirectionFrontal": false,
+            "isDirectionSameDirection": false,
+            "isDirectionStraightAndStraight": true,
+            "isDirectionStraightAndCrossing": false,
+            "isPassangerInjured": false,
+            "isPedestrianInjured": false,
+            "withTrain": false,
+            "withWildAnimal": false,
+            "withPet": false,
+            "isOtherCause": false
+          },{
+            "id": 2,
+            "happenedAt": "1990-01-01T04:00:00.000Z",
+            "outcome": "major",
+            "roadShape": "straight",
+            "latitude": 47.527417515462,
+            "longitude": 19.964537563212,
+            "isBuiltupAreas": true,
+            "isDirectionFrontal": false,
+            "isDirectionSameDirection": false,
+            "isDirectionStraightAndStraight": true,
+            "isDirectionStraightAndCrossing": false,
+            "isPassangerInjured": false,
+            "isPedestrianInjured": false,
+            "withTrain": false,
+            "withWildAnimal": false,
+            "withPet": false,
+            "isOtherCause": false
+          }]
         }
-        ...]
 
-## Egy baleset [/accidents/:id?field=:field]
+## Egy baleset [/accident/:id?field=:field]
 ### Egy baleset [GET]
 + Response 200 (application/json)
 
@@ -64,3 +66,65 @@ A baleseti adatok elérése **Klíma API**-n belül.
     + id (required, number, `1`) ... Az `id` a balesetek egész értékű egyedi azonosítója.
     + field (optional, string, `happenedAt,outcome,isPassangerInjured`) ...
     Megadható, hogy melyik attribútumokat szeretnénk lekérni. Az `id` mindig benne van a válaszban.
+
+# Group Meteorológiai adatok
+A meteorológiai adatok elérése **Klíma API**-n belül.
+
+## Az összes meteorológiai mérés [/climates]
+### Az összes meteorológiai mérés lekérdezése [GET]
++ Response 200 (application/json)
+
+        {
+          "page": 1,
+          "climates": [{
+            "measuredAt": "1990-01-01T02:00:00.000Z",
+            "city": "Győr",
+            "pressure": 1020.4,
+            "temperature": -1.2,
+            "synopticWindSpeed": 0,
+            "synopticWindDirection": 76,
+            "cloudiness": 7,
+            "relativeHumidity": 87,
+            "precipitation": 0,
+            "precipitationCharacteristics": 0,
+            "deltaPressure": 0,
+            "deltaTemperature": -0.1,
+            "deltaSynopticWindSpeed": 0,
+            "deltaSynopticWindDirection": 0,
+            "deltaRelativeHumidity": 2
+          },{
+            "measuredAt": "1990-01-01T04:00:00.000Z",
+            "city": "Budapest",
+            "pressure": 1012.1,
+            "temperature": -3.2,
+            "synopticWindSpeed": 0,
+            "synopticWindDirection": 80,
+            "cloudiness": 5,
+            "relativeHumidity": 87,
+            "precipitation": 2,
+            "precipitationCharacteristics": 0,
+            "deltaPressure": 0,
+            "deltaTemperature": -3.1,
+            "deltaSynopticWindSpeed": 0,
+            "deltaSynopticWindDirection": 0,
+            "deltaRelativeHumidity": 3
+          }]
+        }
+
+## Egy meteorológiai mérés [/climate/:city/:measuredAt/?field=:field]
+### Egy meteorológiai mérés [GET]
++ Response 200 (application/json)
+
+        {
+          "measuredAt": "1990-01-01T04:00:00.000Z",
+          "city": "Budapest",
+          "temperature": -3.2,
+          "relativeHumidity": 87,
+          "precipitation": 2,
+        }
+
++ Parameters
+    + city (required, string, `Budapest`) ... A város, ahol a mérést végezték.
+    + measuredAt (required, string, `1990-01-01 02:00`) ... Az időpont, amikor a mérést végezték
+    + field (optional, string, `temperature,relativeHumidity,precipitation`) ...
+    Megadható, hogy melyik attribútumokat szeretnénk lekérni. A `city` és a `measuredAt` mindig benne van a válaszban.
